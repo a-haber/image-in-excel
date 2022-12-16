@@ -37,5 +37,3 @@ def test_create_df():
     lists = [lists] * y
     df = create_df(lists)
     assert (df.shape == (y,x))
-
-test_create_df()
