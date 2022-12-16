@@ -6,11 +6,11 @@ def create_df(lists):
     # add option for vert/horizontal pixel alignment using df.transpose()
     return(df)
 
-def create_sheet(df):
+def create_sheet(df, imagename):
     """create spreadsheet with given pixel values"""
     
     # with ... as ... should close the sheet automatically when done
-    with pd.ExcelWriter('imageresult.xlsx') as writer:
+    with pd.ExcelWriter(imagename+'-output-image.xlsx') as writer:
         df.to_excel(writer, header=False, index=False) # create spreadsheet
 
         worksheet = writer.sheets['Sheet1'] # set up worksheet

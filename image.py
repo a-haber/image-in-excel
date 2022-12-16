@@ -6,14 +6,28 @@ def read_image(filename):
     (x,y) = im.size
     return(im, (x,y))
 
-def resize_image(im, original_size):
+def resize_image(im, original_size, extra_compression=0, extra_quality=0):
     """resize image appropriately for reasonably sized excel file\n
+    integers extra_compression and extra_quality allow greater control of output size\n
     return list of pixel values and new size"""
     (x,y) = original_size
-    for i in range(3): # brute force to resize this particular image to an appropriate size for now
+    while (y >= 80 or x >= 187): # sets limit of 3*80=240 rows, 187 columns
         x//=2
         y//=2
         im = im.resize((x,y))
+    
+    # optional parameters to control output quality
+    for i in range(extra_compression): # optional: compress size even further
+        x,y = int(0.75*x), int(0.75*y)
+        im = im.resize((x,y))
+    for i in range(extra_quality):
+        if (y<=135 and x <=280): # set upper limit on size
+            x,y = int(1.5*x), int(1.5*y)
+            im = im.resize((x,y))
+        else:
+            print("Warning: Image size getting too large!\nConsider reducing output size with the extra_compression and extra_quality parameters")
+            break
+
     return(list(im.getdata()), im.size)
 
 def pixel_lists(pixels, size):
