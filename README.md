@@ -11,7 +11,7 @@ The program converts __all .jpg images in the current directory__ into excel pix
 ### Examples ###
 Using the example (540x481) jpeg image tweety.jpg, the output spreadsheet looks as follows (screenshots with various levels of zoom):
 
-![Example Output with zoom](example-output-images\standard-output-screenshot.png)
+![Example Output with zoom](example-output-images/standard-output-screenshot.png)
 
 ### Formatting options ###
 __image compression__
@@ -35,12 +35,12 @@ Some examples (screenshots of different outputs):
 
 Invert
 
-![Inverted](example-output-images\tweety_output_screenshot_invertcolours.png)
+![Inverted](example-output-images/tweety_output_screenshot_invertcolours.png)
 
 B/W (greyscale with rgb)
 
-![Black/White](example-output-images\tweety_output_screenshot_bw.png)
+![Black/White](example-output-images/tweety_output_screenshot_bw.png)
 
 BWS (pure greyscale, no rgb)
 
-![Black/White Smoothened](example-output-images\tweety_output_screenshot_bws.png)
+![Black/White Smoothened](example-output-images/tweety_output_screenshot_bws.png)
