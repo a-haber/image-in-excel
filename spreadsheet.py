@@ -3,10 +3,9 @@ import pandas as pd
 def create_df(lists):
     """create data frame with relevant formatting"""
     df = pd.DataFrame(lists)
-    # add option for vert/horizontal pixel alignment using df.transpose()
     return(df)
 
-def create_sheet(df, imagename):
+def create_sheet(df, imagename, colouring='std'):
     """create spreadsheet with given pixel values"""
     
     # with ... as ... should close the sheet automatically when done
@@ -25,6 +24,12 @@ def create_sheet(df, imagename):
                 colours = ['#000000','#008000','#00FF00'] # green
             elif row % 3 == 2:
                 colours = ['#000000','#000080','#0000FF'] # blue
+            
+            if colouring == 'invert':
+                colours = colours[::-1]
+            elif colouring == 'bws':
+                colours = ['#000000','#808080','#FFFFFF']
+            
             # cells should behave as pixels, colour intensity depending on numerical value in each cell
             worksheet.conditional_format(row,0,row,max_col, {'type': '3_color_scale',
                         'min_type': 'num', 'min_value': 0,

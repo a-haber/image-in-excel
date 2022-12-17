@@ -30,7 +30,7 @@ def resize_image(im, original_size, extra_compression=0, extra_quality=0):
 
     return(list(im.getdata()), im.size)
 
-def pixel_lists(pixels, size):
+def pixel_lists(pixels, size, colouring='std'):
     """split pixel values into lists of correct size and shape for spreadsheet"""
 
     lists = [] # create empty lists
@@ -39,6 +39,10 @@ def pixel_lists(pixels, size):
         # for each row (y) in image, create three new rows
         # one row for each colour r,g,b
         for j in range(3):
-            colour = [k[j] for k in pixels[x*i:x*(i+1)]]
+            if colouring != 'bw' and colouring != 'bws': # standard case
+                colour = [k[j] for k in pixels[x*i:x*(i+1)]]
+            else:
+                # average colour intensity of pixel for smoothened black/white modes
+                colour = [(k[0]+k[1]+k[2])/3 for k in pixels[x*i:x*(i+1)]]
             lists.append(colour)
     return(lists)
